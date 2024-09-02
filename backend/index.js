@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const blogRoutes = require("./src/routes/blog.route");
+const commentRoute = require("./src/routes/comment.route");
 
 const app = express();
 require("dotenv").config();
@@ -11,8 +13,8 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-const blogRoutes = require("./src/routes/blog.route");
 app.use("/api/blogs", blogRoutes);
+app.use("/api/comments", commentRoute);
 
 const main = async () => {
   try {
