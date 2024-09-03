@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const blogRoutes = require("./src/routes/blog.route");
 const commentRoute = require("./src/routes/comment.route");
+const authRouter = require("./src/routes/auth.user.route");
 
 const app = express();
 require("dotenv").config();
@@ -15,6 +16,7 @@ app.use(cors());
 //routes
 app.use("/api/blogs", blogRoutes);
 app.use("/api/comments", commentRoute);
+app.use("/api/auth/", authRouter);
 
 const main = async () => {
   try {
