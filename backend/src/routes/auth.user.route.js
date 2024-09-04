@@ -89,6 +89,9 @@ router.get("/users", async (request, response) => {
 router.delete("/users/:id", async (request, response) => {
   try {
     const { id: userId } = request.params;
+
+    //deleteOne -> accepting object query
+    //findByIdAndDelete -> accepting single value not object
     const deletedUser = await User.deleteOne({ _id: userId });
 
     if (deletedUser.deletedCount === 0)
@@ -102,6 +105,26 @@ router.delete("/users/:id", async (request, response) => {
   } catch (error) {
     response.status(500).json({ message: "Error delete users details" });
     console.log(`delete users-failed error :: ${error} `);
+  }
+});
+
+//UPDATE USER ROLE
+router.patch("/users/:id", async (request, response) => {
+  try {
+    const { id: userId } = request.params;
+    const { role } = request.body;
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { role },
+      { new: true }
+    );
+    response.status(200).json({
+      message: "User's role has been updated successfully",
+      updatedUser,
+    });
+  } catch (error) {
+    response.status(500).json({ message: "Error updating users details" });
+    console.log(`update users-failed error :: ${error} `);
   }
 });
 
