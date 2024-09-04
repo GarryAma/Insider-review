@@ -27,22 +27,23 @@ router.post("/login", async (request, response) => {
     const { email, password } = request.body;
 
     // find the user
-    const user = await User.find({ email });
-    // console.log(user);
+    //user will be MONGOOSE OBJECT || convert it to normal js object if destructured required.
+    const user = await User.findOne({ email });
+
     //if no user
     if (!user) return response.status(404).json({ message: "user not found" });
 
     //exclude the password
-    const { password: pass, ...rest } = user[0]._doc;
-    // console.log(rest);
+    const { password: userPassword, ...userData } = user.toObject();
+    // console.log(userData);
 
-    const isMatch = await bcrypt.compare(password, user[0]._doc.password);
+    const isMatch = await bcrypt.compare(password, userPassword);
 
     if (!isMatch)
       return response.status(401).json({ message: "Invalid credentials" });
 
     //generate token
-    const token = await generateToken(rest._id);
+    const token = await generateToken(userData._id);
 
     //save it into cookies
     response.cookie("token", token, {
@@ -53,7 +54,7 @@ router.post("/login", async (request, response) => {
 
     response
       .status(200)
-      .json({ message: "Login successfully", user: rest, token });
+      .json({ message: "Login successfully", user: userData, token });
   } catch (error) {
     response.status(500).json({ message: "Error user login" });
     console.log(`login-failed error :: ${error} `);
@@ -68,6 +69,39 @@ router.post("/logout", async (request, response) => {
   } catch (error) {
     response.status(500).json({ message: "Error user logout" });
     console.log(`logout-failed error :: ${error} `);
+  }
+});
+
+//GET ALL USERS
+router.get("/users", async (request, response) => {
+  try {
+    const users = await User.find({}, "_id email username");
+    response
+      .status(200)
+      .json({ message: "users has been successfully fetched", users });
+  } catch (error) {
+    response.status(500).json({ message: "Error fetching users details" });
+    console.log(`fetching users-failed error :: ${error} `);
+  }
+});
+
+//DELETE A USER
+router.delete("/users/:id", async (request, response) => {
+  try {
+    const { id: userId } = request.params;
+    const deletedUser = await User.deleteOne({ _id: userId });
+
+    if (deletedUser.deletedCount === 0)
+      return response
+        .status(404)
+        .json({ message: "User not found or has been deleted" });
+
+    response
+      .status(200)
+      .json({ message: "User has been deleted successfully", deletedUser });
+  } catch (error) {
+    response.status(500).json({ message: "Error delete users details" });
+    console.log(`delete users-failed error :: ${error} `);
   }
 });
 
