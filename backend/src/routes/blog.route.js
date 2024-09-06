@@ -1,6 +1,8 @@
 const express = require("express");
 const Blog = require("../model/blog.model");
 const Comment = require("../model/comment.model");
+const verifyToken = require("../middleware/verifyToken");
+const isAdmin = require("../middleware/isAdmin");
 
 const router = express.Router();
 
@@ -30,7 +32,11 @@ router.get("/", async (request, response) => {
       query = { ...query.location };
     }
 
-    const allBlogs = await Blog.find(query).sort({ createdAt: -1 });
+    const allBlogs = await Blog.find(query)
+      .populate("author", "email") //read:: because of author schema has ref to User, we have an access to Users's email.
+      .sort({ createdAt: -1, _id: -1 });
+
+    // console.log(allBlogs);
     response
       .status(200)
       .json({ message: "Posts retrieved successfully", posts: allBlogs });
@@ -41,9 +47,9 @@ router.get("/", async (request, response) => {
 });
 
 //CREATE A BLOG POST
-router.post("/create-post", async (request, response) => {
+router.post("/create-post", verifyToken, isAdmin, async (request, response) => {
   try {
-    const newPost = new Blog({ ...request.body });
+    const newPost = new Blog({ ...request.body, author: request.userId }); // author: request.userId will be added when token verified
     await newPost.save();
     response
       .status(200)
@@ -64,7 +70,7 @@ router.get("/:id", async (request, response) => {
       return response.status(404).json({ message: "Post not found" });
     }
 
-    //*******NOT DONE! => NEED FETCH RELATED COMMENT TO THE POST*********
+    //*******NOT DONE!ITS DONE NOW!! => NEED FETCH RELATED COMMENT TO THE POST*********
     const comments = await Comment.find({ postId }).populate(
       //populate means take "user property" from Comment and i want only show username and email
       "user",
@@ -82,7 +88,7 @@ router.get("/:id", async (request, response) => {
 });
 
 //UPDATE POST/BLOG
-router.patch("/update-post/:id", async (request, response) => {
+router.patch("/update-post/:id", verifyToken, async (request, response) => {
   try {
     const { id: postId } = request.params;
     const updatedPost = await Blog.findByIdAndUpdate(
@@ -103,7 +109,7 @@ router.patch("/update-post/:id", async (request, response) => {
 });
 
 //DELETE A BLOG POST
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", verifyToken, async (request, response) => {
   try {
     const { id: postId } = request.params;
 

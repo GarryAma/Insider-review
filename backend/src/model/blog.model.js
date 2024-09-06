@@ -9,10 +9,19 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  content: String,
+  // content: String,
+  content: {
+    type: Object,
+    required: true,
+  },
   coverImg: String,
   category: String,
-  author: String, //=> this will be modified after user created, author will come from user model
+  // author: String, //=> this will be modified after user created, author will come from user model
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   rating: Number,
   createdAt: {
     type: Date,
