@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "./Hero";
+import Blogs from "../blogs/Blogs";
 
 const Home = () => {
   return (
@@ -7,10 +8,8 @@ const Home = () => {
       {/* BANNER/HERO */}
       <Hero />
 
-      <hr />
-
       {/* BLOGS */}
-      <div>BLOGS</div>
+      <Blogs />
     </div>
   );
 };

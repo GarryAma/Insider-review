@@ -27,7 +27,7 @@ const Navbar = () => {
         <ul className="sm:flex hidden items-center gap-8 text-sm">
           {navList.map((single, index) => {
             return (
-              <li>
+              <li key={index}>
                 <NavLink
                   to={single.path}
                   key={index}
@@ -58,7 +58,7 @@ const Navbar = () => {
       >
         {navList.map((single, index) => {
           return (
-            <li>
+            <li key={index}>
               <NavLink
                 onClick={() => setIsMenuOpen(false)}
                 to={single.path}

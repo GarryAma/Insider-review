@@ -1,7 +1,8 @@
 /* Hero.css */
 .mySwiper .swiper-pagination-bullet {
-  background-color: #eaff00; /* Warna default bullet */
+  background-color: #ffff00; /* Warna default bullet */
   opacity: 1; /* Pastikan bullet terlihat jelas */
+  border: 1px solid rgba(0, 0, 0, 0.456);
 }
 
 .mySwiper .swiper-pagination-bullet-active {

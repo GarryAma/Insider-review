@@ -23,11 +23,11 @@ const Hero = () => {
     <div className="flex flex-col sm:flex-row justify-between items-center sm:gap-8 gap-8">
       {/* left */}
       <div className="sm:w-1/2 w-full text-center">
-        <h1 className="md:text-xl text-sm font-bold">
+        <h1 className="md:text-4xl text-3xl font-bold">
           Unlock the Secrets of JavaScript and Full Stack Development
         </h1>
         <p className="py-4">
-          Discover in-depth guides, tips, and insights on JavaScript and MERN
+          Disfill in-depth guides, tips, and insights on JavaScript and MERN
           stack development. Stay ahead with the latest trends and best
           practices to master full stack programming.
         </p>
@@ -66,42 +66,42 @@ const Hero = () => {
             <img
               src={imgOne}
               alt=""
-              className="w-full lg:h-[420px] sm:h-96 h-96"
+              className="w-full lg:h-[420px] sm:h-96 h-96 object-fill"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={imgTwo}
               alt=""
-              className="w-full lg:h-[420px] sm:h-96 h-96"
+              className="w-full lg:h-[420px] sm:h-96 h-96 object-fill"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={imgThree}
               alt=""
-              className="w-full lg:h-[420px] sm:h-96 h-96"
+              className="w-full lg:h-[420px] sm:h-96 h-96 object-fill"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={imgFour}
               alt=""
-              className="w-full lg:h-[420px] sm:h-96 h-96"
+              className="w-full lg:h-[420px] sm:h-96 h-96 object-fill"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={imgFive}
               alt=""
-              className="w-full lg:h-[420px] sm:h-96 h-96"
+              className="w-full lg:h-[420px] sm:h-96 h-96 object-fill"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={imgSix}
               alt=""
-              className="w-full lg:h-[420px] sm:h-96 h-96"
+              className="w-full lg:h-[420px] sm:h-96 h-96 object-fill"
             />
           </SwiperSlide>
         </Swiper>
