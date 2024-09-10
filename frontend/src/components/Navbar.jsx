@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../public/insider-review.png";
+import logo from "../assets/insider-review.png";
 import { IoMenuSharp } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
 
