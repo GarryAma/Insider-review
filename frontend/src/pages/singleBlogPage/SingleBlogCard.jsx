@@ -36,11 +36,19 @@ const SingleBlogCard = ({ blog }) => {
         </div>
 
         {/* //BLOG DETAIL */}
-        <div className="mt-8  bg-red-100">
+        <div className="mt-8 bg-slate-50 p-4 text-slate-800 flex flex-col space-y-2">
           <div
             dangerouslySetInnerHTML={{ __html: html }}
             className=" flex flex-col space-y-3 editorjsdiv"
           />
+          <div className="flex space-x-1">
+            <span>Rating :</span>
+            <div>
+              {Array.from({ length: rating }, (_, index) => (
+                <span className="mr-0.5">⭐️</span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>
