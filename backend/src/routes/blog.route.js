@@ -77,6 +77,8 @@ router.get("/:id", async (request, response) => {
       "username email"
     );
 
+    console.log(comments);
+
     response.status(200).json({
       message: "Post by id has been successfully retrieved",
       post: postById,

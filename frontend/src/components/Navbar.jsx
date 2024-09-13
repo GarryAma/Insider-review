@@ -24,7 +24,7 @@ const Navbar = () => {
         <Link to={"/"}>
           <img src={logo} alt="" className="h-[60px] w-[80px]" />
         </Link>
-        <ul className="sm:flex hidden items-center gap-8 text-sm">
+        <ul className="sm:flex hidden items-center gap-8 text-sm ">
           {navList.map((single, index) => {
             return (
               <li key={index}>

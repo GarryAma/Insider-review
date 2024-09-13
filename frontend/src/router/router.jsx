@@ -5,6 +5,7 @@ import About from "../pages/About.jsx";
 import Privacy from "../pages/Privacy.jsx";
 import Contact from "../pages/Contact.jsx";
 import Login from "../pages/Login.jsx";
+import SingleBlogPage from "../pages/singleBlogPage/SingleBlogPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-me",
         element: <Contact />,
+      },
+      {
+        path: "/blog/:id",
+        element: <SingleBlogPage />,
       },
     ],
   },
