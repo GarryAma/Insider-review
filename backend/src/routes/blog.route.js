@@ -148,6 +148,7 @@ router.get("/related/:id", async (request, response) => {
     }
 
     const titleRegex = new RegExp(blog.title.split(" ").join("|"), "i");
+
     console.log(titleRegex);
     const relatedQuery = {
       _id: { $ne: postId }, //=> exclude the current id of the post

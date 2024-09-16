@@ -1,5 +1,6 @@
 import React from "react";
 import edjsHTML from "editorjs-html";
+import { FaStar } from "react-icons/fa";
 
 const SingleBlogCard = ({ blog }) => {
   const { category, content, coverImg, createdAt, description, rating, title } =
@@ -14,13 +15,13 @@ const SingleBlogCard = ({ blog }) => {
 
   return (
     <>
-      <div className="bg-white p-8">
+      <div className="bg-white p-8 text-xs sm:text-sm">
         {/* BLOG HEADER */}
         <div>
           <h1 className="md:text-lg sm:text-md lg:text-xl text-xs font-medium mb-4">
             {title}
           </h1>
-          <p className="mb-6">
+          <p className="mb-6 text-sm">
             {`${date} ${time}`} |{" "}
             <span
               className="text-blue-400 cursor-pointer"
@@ -36,16 +37,25 @@ const SingleBlogCard = ({ blog }) => {
         </div>
 
         {/* //BLOG DETAIL */}
-        <div className="mt-8 bg-slate-50 p-4 text-slate-800 flex flex-col space-y-2">
+        <div className="mt-8  p-4 text-slate-800 flex flex-col space-y-2">
           <div
             dangerouslySetInnerHTML={{ __html: html }}
-            className=" flex flex-col space-y-3 editorjsdiv"
+            className=" flex flex-col space-y-3 editorjsdiv "
           />
-          <div className="flex space-x-1">
+          <div className="flex space-x-1 items-center ">
             <span>Rating :</span>
             <div>
               {Array.from({ length: rating }, (_, index) => (
-                <span className="mr-0.5">⭐️</span>
+                <span className="mr-0.5" key={index}>
+                  <FaStar
+                    style={{
+                      display: "inline",
+                      color: "gold",
+                      stroke: "black",
+                      strokeWidth: 16,
+                    }}
+                  />
+                </span>
               ))}
             </div>
           </div>

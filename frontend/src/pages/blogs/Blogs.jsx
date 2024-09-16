@@ -54,7 +54,7 @@ const Blogs = () => {
           </div>
         ))}
       </div>
-      <div>Blogs cards</div>
+      {/* <div>Blogs cards</div> */}
     </div>
   );
 };
