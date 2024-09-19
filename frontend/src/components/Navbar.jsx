@@ -27,7 +27,7 @@ const Navbar = () => {
         <ul className="sm:flex hidden items-center gap-8 text-sm ">
           {navList.map((single, index) => {
             return (
-              <li key={index}>
+              <li key={index} className="sm:text-xs">
                 <NavLink
                   to={single.path}
                   key={index}
@@ -39,7 +39,9 @@ const Navbar = () => {
             );
           })}
           <li>
-            <NavLink to={"/login"}>Login</NavLink>
+            <NavLink to={"/login"} className={"text-xs"}>
+              Login
+            </NavLink>
           </li>
         </ul>
         {/* TOGGLE MENU */}
@@ -65,13 +67,15 @@ const Navbar = () => {
                 key={index}
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
-                •· {single.name}
+                <span className="text-xs sm:text-sm">•· {single.name}</span>
               </NavLink>
             </li>
           );
         })}
         <li>
-          <NavLink to={"/login"}>•· Login</NavLink>
+          <NavLink to={"/login"} className={"text-xs"}>
+            •· Login
+          </NavLink>
         </li>
       </ul>
     </header>

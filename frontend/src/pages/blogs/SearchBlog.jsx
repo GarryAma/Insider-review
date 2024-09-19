@@ -16,7 +16,10 @@ const SearchBlog = ({ search, handleSearchChange, handleSearchSubmit }) => {
         placeholder="Search Topics..."
         className="border p-2 sm:w-[85%] focus:border-slate-500 outline-none sm:text-sm text-xs"
       />
-      <button className="sm:w-[15%] border  text-white bg-[rgb(71,147,233)] hover:bg-blue-500 hover:font-semibold p-2">
+      <button
+        onClick={handleSearchSubmit}
+        className="sm:w-[15%] border  text-white bg-[rgb(71,147,233)] hover:bg-blue-500 hover:font-semibold p-2"
+      >
         Search
       </button>
     </div>
